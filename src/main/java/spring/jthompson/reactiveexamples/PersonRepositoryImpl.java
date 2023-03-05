@@ -16,8 +16,8 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     // Mono is used for at most 1 (0 or 1)
     @Override
-    public Mono<Person> getById(Integer id) {
-        return Mono.just(john);
+    public Mono<Person> getById(final Integer id) {
+        return findAll().filter(person -> person.getId() == id).next();
     }
 
     // Flux is used for one or more
